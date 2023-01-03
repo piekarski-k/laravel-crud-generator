@@ -2,6 +2,7 @@
     "name": "piekarski-k/laravel-crud-generator",
     "type": "library",
     "description": "Laravel tools to generate CRUD",
+    "homepage": "https://github.com/piekarski-k/laravel-crud-generator",
     "keywords": [
         "laravel",
         "crud",
