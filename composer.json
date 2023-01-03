@@ -1,0 +1,25 @@
+{
+    "name": "piekarski-k/laravel-crud-generator",
+    "type": "library",
+    "description": "Laravel tools to generate CRUD",
+    "keywords": [
+        "laravel",
+        "crud",
+        "generate"
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Karolpiekarski\\LaravelCrudGenerator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Karol Piekarski",
+            "email": "info@piekarski.it"
+        }
+    ],
+    "require-dev": {
+        "php": "^7.4 || ^8.0"
+    }
+}
