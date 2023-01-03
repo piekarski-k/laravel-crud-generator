@@ -10,7 +10,7 @@ PHP >= 7.4
 ## Installation
 This project using composer.
 ```
-$ composer require --dev piekarski-k/laravel-crud-generator
+$ composer require piekarski-k/laravel-crud-generator --dev
 ```
 
 ## Usage in terminal
