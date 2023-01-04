@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Request\{{className}}\{{className}}StoreRequest;
+use App\Http\Request\{{className}}\{{className}}UpdateRequest;
+use App\Models\{{className}}Model;
+
+class {{className}}Controller extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('{{classNameLower}}.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('{{classNameLower}}.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  App\Http\Request\{{className}}\{{className}}StoreRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store({{className}}StoreRequest $request)
+    {
+        $validated = $request->validated();
+
+        ${{classNameLower}} = {{className}}Model::create($validated);
+
+        return ${{classNameLower}};
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  App\Models\{{className}}Model ${{classNameLower}}
+     * @return \Illuminate\Http\Response
+     */
+    public function show({{className}} ${{classNameLower}})
+    {
+        ${{classNameLower}} = {{className}}Model::find(${{classNameLower}});
+
+        return view('{{classNameLower}}.show', compact('{{classNameLower}}'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  App\Models\{{className}}Model ${{classNameLower}}
+     * @return \Illuminate\Http\Response
+     */
+    public function edit({{className}} ${{classNameLower}})
+    {
+        ${{classNameLower}} = {{className}}Model::find(${{classNameLower}});
+
+        return view('{{classNameLower}}.edit', compact('{{classNameLower}}'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  App\Http\Request\{{className}}\{{className}}UpdateRequest $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update({{className}}UpdateRequest $request)
+    {
+        $validated = $request->validated();
+
+        ${{classNameLower}} = {{className}}Model::update($validated);
+
+        return ${{classNameLower}};
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  App\Models\{{className}}Model ${{classNameLower}}
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy({{className}}Model ${{classNameLower}})
+    {
+        return ${{classNameLower}}->destroy();
+    }
+}
