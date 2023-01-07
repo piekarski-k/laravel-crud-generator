@@ -23,6 +23,11 @@
     "require": {
         "php": "^7.4 || ^8.0"
     },
-    "require-dev": {
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PiekarskiK\\LaravelCrudGenerator\\CrudGeneratorServiceProvider"
+            ]
+        }
     }
 }
