@@ -19,18 +19,26 @@ class Controller extends Helper
     
     public function create()
     {
+        $className = $this->name.'Controller';
+        
         $template = $this->createTemplate(
             [
                 '{{className}}',
-                '{{classNameLower}}'
+                '{{name}}',
+                '{{nameLower}}',
+                '{{namespace}}'
             ],
             [
+                $className,
                 $this->name,
-                strtolower($this->name)
+                strtolower($this->name),
+                config('crud.controllers.namespace')
             ],
-            "{$this->name}-{$this->variant}"
+            "controller-{$this->variant}"
         );
     
-        file_put_contents($this->path, $template);
+        echo $this->path . "Controller.php";
+        
+        file_put_contents($this->path . DIRECTORY_SEPARATOR . $className . ".php", $template);
     }
 }
