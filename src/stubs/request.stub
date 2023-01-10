@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\{{className}};
+namespace {{namespace}}\{{name}};
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class {{className}}{{method}}Request extends FormRequest
+class {{className}} extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,7 +22,7 @@ class {{className}}{{method}}Request extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             //

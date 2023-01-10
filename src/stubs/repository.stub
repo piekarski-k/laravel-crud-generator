@@ -1,0 +1,94 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Models\{{model}};
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
+
+class {{className}}
+{
+    private Builder ${{nameLower}}s;
+
+    public function __construct()
+    {
+        $this->{{nameLower}}s = {{model}}::query();
+    }
+
+    /**
+     * @param  array  $filters
+     *
+     * @return LengthAwarePaginator
+     */
+    public function list(array $filters = []): LengthAwarePaginator
+    {
+        $this->{{nameLower}}s->orderBy('created_at', 'desc');
+
+        return $this->{{nameLower}}s->paginate(perPage: 15);
+    }
+
+    /**
+     * @return array[]
+     */
+    public function create(): array
+    {
+        return [
+
+        ];
+    }
+
+    public function edit($data)
+    {
+        return [
+            'data' => $this->{{nameLower}}s->where('id', $data['{{modelLower}}'])->first(),
+        ];
+    }
+
+    /**
+     * @param array $data
+     * @return {{model}}
+     * @throws Exception
+     */
+    public function store(array $data): {{model}}
+    {
+        return $this->save($data);
+    }
+
+    /**
+     * @param array $data
+     * @return {{model}}
+     * @throws Exception
+     */
+    public function update(array $data, ${{nameLower}}): {{model}}
+    {
+        return $this->save($data, ${{nameLower}});
+    }
+
+    /**
+     * @param {{model}} ${{modelLower}}
+     * @return bool
+     * @throws Exception
+     */
+    public function destroy({{model}} ${{modelLower}}): bool
+    {
+        ${{modelLower}}->delete();
+
+        return true;
+    }
+
+    /**
+     * @param {{model}}|null ${{modelLower}}
+     * @param array $data
+     * @return {{model}}
+     */
+    public function save(array $data, ?{{model}} ${{modelLower}} = null)
+    {
+        if (${{modelLower}}) {
+            ${{modelLower}} = ${{modelLower}}->update($data);
+        } else {
+            ${{modelLower}} = ${{modelLower}}->create($data);
+        }
+
+        return ${{modelLower}}->fresh();
+    }
+}

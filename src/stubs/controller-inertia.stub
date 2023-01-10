@@ -4,22 +4,11 @@ namespace {{namespace}};
 
 use App\Http\Requests\{{name}}\Store{{name}}Request;
 use App\Http\Requests\{{name}}\Update{{name}}Request;
-use App\Repositories\{{name}}Repository;
 use App\Models\{{name}};
-use Exception;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\QueryException;
 
 class {{className}} extends Controller
 {
-    private {{name}}Repository ${{nameLower}}Repository;
-
-    public function __construct({{name}}Repository ${{nameLower}}Repository)
-    {
-        $this->{{nameLower}}Repository = ${{nameLower}}Repository;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -45,23 +34,14 @@ class {{className}} extends Controller
      *
      * @param  Store{{name}}Request $request
      * @return View
-     * @throws Exception
      */
     public function store(Store{{name}}Request $request): View
     {
         $validated = $request->validated();
 
-        DB::beginTransaction();
-        try {
-            $data = $this->{{nameLower}}Repository->store($validated);
+        ${{nameLower}} = {{name}}::create($validated);
 
-            DB::commit();
-        } catch (QueryException $e) {
-            DB::rollBack();
-            abort(code: 409, message: $e->getMessage());
-        }
-
-        return view('{{nameLower}}.edit', $data);
+        return ${{nameLower}};
     }
 
     /**
@@ -96,23 +76,14 @@ class {{className}} extends Controller
      * @param  Update{{name}}Request $request
      * @param  {{name}} ${{nameLower}}
      * @return {{name}}
-     * @throws Exception
      */
     public function update(Update{{name}}Request $request, {{name}} ${{nameLower}}): {{name}}
     {
         $validated = $request->validated();
 
-        DB::beginTransaction();
-        try {
-            $data = $this->{{nameLower}}Repository->update($validated, ${{nameLower}});
+        ${{nameLower}} = {{name}}::update($validated);
 
-            DB::commit();
-        } catch (QueryException $e) {
-            DB::rollBack();
-            abort(code: 409, message: $e->getMessage());
-        }
-
-        return $data;
+        return ${{nameLower}};
     }
 
     /**
